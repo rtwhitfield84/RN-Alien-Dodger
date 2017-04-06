@@ -36,13 +36,42 @@ export default class game extends Component {
               }}></Animated.Image>
 
               <View style={styles.controls}>
-                <Text style={styles.left}> {'<'} </Text>
-                <Text style={styles.right}> {'>'} </Text>
+                <Text style={styles.left} onPress={ () => this.movePlayer('left') }> {'<'} </Text>
+                <Text style={styles.right} onPress={ () => this.movePlayer('right') }> {'>'} </Text>
               </View>
 
         </Image>
 
     );
+  }
+
+  movePlayer(direction) {
+
+    if (direction == 'right') {
+      this.setState({ playerSide: 'right' });
+
+      Animated.spring(
+        this.state.movePlayerVal,
+          {
+            toValue: Dimensions.get('window').width - 140,
+            tension: 120,
+          }
+        ).start();
+    } else if (direction == 'left') {
+
+      this.setState({ playerSide: 'left' });
+
+
+      Animated.spring(
+        this.state.movePlayerVal,
+          {
+            toValue: 40,
+            tension: 120,
+          }
+        ).start();
+
+    }
+
   }
 }
 
@@ -58,7 +87,7 @@ const styles = StyleSheet.create({
   },
   right: {
     flex: 1,
-    color: '#fff',
+    color: '#000',
     margin: 0,
     fontSize: 60,
     fontWeight: 'bold',
@@ -66,7 +95,7 @@ const styles = StyleSheet.create({
   },
   left: {
     flex: 1,
-    color: '#fff',
+    color: '#000',
     fontSize: 60,
     fontWeight: 'bold',
     textAlign: 'right'
