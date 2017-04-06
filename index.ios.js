@@ -35,6 +35,11 @@ export default class game extends Component {
                 ]
               }}></Animated.Image>
 
+              <View style={styles.controls}>
+                <Text style={styles.left}> {'<'} </Text>
+                <Text style={styles.right}> {'>'} </Text>
+              </View>
+
         </Image>
 
     );
@@ -46,6 +51,25 @@ const styles = StyleSheet.create({
     flex: 1,
     position: 'relative',
     resizeMode: 'cover'
+  },
+  controls: {
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  right: {
+    flex: 1,
+    color: '#fff',
+    margin: 0,
+    fontSize: 60,
+    fontWeight: 'bold',
+    textAlign: 'left'
+  },
+  left: {
+    flex: 1,
+    color: '#fff',
+    fontSize: 60,
+    fontWeight: 'bold',
+    textAlign: 'right'
   }
 });
 
