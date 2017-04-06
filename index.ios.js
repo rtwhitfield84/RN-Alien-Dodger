@@ -10,6 +10,14 @@ import {
 } from 'react-native';
 
 export default class game extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      movePlayerVal: new Animated.Value(40),
+      playerSide: 'left',
+    };
+  }
   render() {
     return (
         <Image source={require('./app/img/bg.png')} style={styles.container}>
@@ -21,7 +29,10 @@ export default class game extends Component {
                 position: 'absolute',
                 zIndex: 1,
                 bottom: 150,
-                resizeMode: 'stretch'
+                resizeMode: 'stretch',
+                transform: [
+                  { translateX: this.state.movePlayerVal }
+                ]
               }}></Animated.Image>
 
         </Image>
