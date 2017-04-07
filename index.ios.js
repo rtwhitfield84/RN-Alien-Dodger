@@ -93,6 +93,68 @@ export default class game extends Component {
     }
 
   }
+
+  componentDidMount() {
+    this.animateEnemy();
+  }
+
+  animateEnemy() {
+    this.state.moveEnemyval.setValue(-100);
+    var windowH = Dimensions.get('window').height;
+
+    var r = Math.floor(Math.random() * 2) +1;
+
+    if (r == 2) {
+      r = 40;
+      this.setState({ enemySide: 'left '});
+    } else {
+      r = Dimensions.get('window').width - 140;
+
+      this.setState({ enemySide: 'right '});
+    }
+    this.setState({ enemyStartposX: r});
+
+    //interval to check for collision
+    var refreshIntervalId;
+    refreshIntervalId = setInterval( () => {
+
+      // collision logic
+      
+      if (this.state.moveEnemyval._value > windowH -280
+        && this.state.moveEnemyval._value < windowH -180
+        && this.state.playerSide == this.state.enemySide) {
+              
+              clearInterval(refreshIntervalId);
+              this.setState({ gameOver: 'true' });
+              this.gameOver();
+
+      }
+
+    }, 50);
+
+    setInterval( () => {
+      this.setState({ enemySpeed: this.state.enemySpeed -50 })
+    }, 20000);
+
+    Animated.timing(
+
+      this.state.moveEnemyval,
+      {
+        toValue: Dimensions.get('window').height,
+        duration: this.state.enemySpeed,
+      }
+
+      ).start(event => {
+
+        if(event.finished && this.state.gameOver == false) {
+          clearInterval(refreshIntervalId);
+          this.setState({ points: ++this.state.points });
+          this.animateEnemy();
+        }
+
+      })
+
+  }
 }
 
 const styles = StyleSheet.create({
