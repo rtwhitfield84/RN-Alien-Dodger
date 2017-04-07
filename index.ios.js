@@ -19,6 +19,13 @@ export default class game extends Component {
       movePlayerVal: new Animated.Value(40),
       playerSide: 'left',
       points: 0,
+
+      moveEnemyval: new Animated.Value(0),
+      enemyStartposX: 0,
+      enemySide: 'left',
+      enemySpeed: 4200,
+
+      gameOver: false,
     };
   }
   render() {
