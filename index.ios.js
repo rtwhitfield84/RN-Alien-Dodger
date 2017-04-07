@@ -51,6 +51,10 @@ export default class game extends Component {
                 ]
               }}></Animated.Image>
 
+              <Enemy enemyImg={require('./app/img/enemy.png')}
+              enemyStartposX={this.state.enemyStartposX}
+              moveEnemyval={this.state.moveEnemyval} />
+
               <View style={styles.controls}>
                 <Text style={styles.left} onPress={ () => this.movePlayer('left') }> {'<<<<'} </Text>
                 <Text style={styles.right} onPress={ () => this.movePlayer('right') }> {'>>>>'} </Text>
