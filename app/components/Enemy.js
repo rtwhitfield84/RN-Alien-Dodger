@@ -11,7 +11,7 @@ export default class Enemy extends Component {
 
   render() {
     return (
-            <Animated.Image source={require('./app/img/player.png')}
+            <Animated.Image source={this.props.enemyImg}
             style={{
                 height: 100,
                 width: 100,
@@ -19,9 +19,10 @@ export default class Enemy extends Component {
                 resizeMode: 'stretch',
                 left: this.props.enemyStartposX,
                 transform: [
-                  { translateY: this.state.moveEnemyval },
+                  { translateY: this.props.moveEnemyval },
                 ]
               }}></Animated.Image>
 
     );
-  }
+  } 
+}
