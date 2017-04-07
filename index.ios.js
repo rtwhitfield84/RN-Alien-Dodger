@@ -152,8 +152,11 @@ export default class game extends Component {
           this.animateEnemy();
         }
 
-      })
+      });
+  }
 
+  gameOver() {
+    alert('You Lose!')
   }
 }
 
