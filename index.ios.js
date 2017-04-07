@@ -9,6 +9,8 @@ import {
   Image
 } from 'react-native';
 
+import Enemy from './app/components/Enemy';
+
 export default class game extends Component {
 
   constructor(props) {
